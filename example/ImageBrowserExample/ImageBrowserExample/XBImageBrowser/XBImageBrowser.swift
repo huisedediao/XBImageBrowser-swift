@@ -98,7 +98,10 @@ class XBImageBrowser: UIViewController {
             return
         }
 
-        xbCollectionView.frame = CGRect(x: 0, y: 0, width: XBImageBorwserConfig.getRightSize().width, height: XBImageBorwserConfig.getRightSize().height)
+        UIView.animate(withDuration: 0.5) { 
+            self.xbCollectionView.frame = CGRect(x: 0, y: 0, width: XBImageBorwserConfig.getRightSize().width, height: XBImageBorwserConfig.getRightSize().height)
+        }
+        
 
         
         xbCollectionView.reloadData()

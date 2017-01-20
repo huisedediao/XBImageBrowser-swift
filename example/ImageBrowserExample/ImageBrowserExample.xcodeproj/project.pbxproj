@@ -239,6 +239,7 @@
 				TargetAttributes = {
 					F198A4361E31FA4600BCC8C3 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = RGKKCWSWB9;
 						ProvisioningStyle = Automatic;
 					};
 					F198A44A1E31FA4700BCC8C3 = {
@@ -468,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RGKKCWSWB9;
 				INFOPLIST_FILE = ImageBrowserExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chuango.ImageBrowserExample;
@@ -480,6 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RGKKCWSWB9;
 				INFOPLIST_FILE = ImageBrowserExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chuango.ImageBrowserExample;
@@ -561,6 +564,7 @@
 				F198A4611E31FA4700BCC8C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F198A4621E31FA4700BCC8C3 /* Build configuration list for PBXNativeTarget "ImageBrowserExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -569,6 +573,7 @@
 				F198A4641E31FA4700BCC8C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F198A4651E31FA4700BCC8C3 /* Build configuration list for PBXNativeTarget "ImageBrowserExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -577,6 +582,7 @@
 				F198A4671E31FA4700BCC8C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

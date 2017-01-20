@@ -34,7 +34,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="帅哥"/>
                                 <connections>
-                                    <action selector="show:" destination="BYZ-38-t0r" eventType="touchDragInside" id="zmU-ow-v2a"/>
+                                    <action selector="show:" destination="BYZ-38-t0r" eventType="touchUpInside" id="52r-uB-nbf"/>
                                 </connections>
                             </button>
                         </subviews>

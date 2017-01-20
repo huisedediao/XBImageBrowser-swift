@@ -17,14 +17,14 @@ class XBImageBrowser: UIViewController {
         let flow = UICollectionViewFlowLayout()
         flow.scrollDirection = UICollectionViewScrollDirection.horizontal
         flow.minimumInteritemSpacing = 0
-        flow.minimumLineSpacing = 0;
+        flow.minimumLineSpacing = 0
         
         let _xbCollectionView:UICollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: flow)
         // 设置collectionView的代理：
-        _xbCollectionView.delegate = self;
-        _xbCollectionView.dataSource = self;
-        _xbCollectionView.isPagingEnabled = true;
-        _xbCollectionView.showsHorizontalScrollIndicator = false;
+        _xbCollectionView.delegate = self
+        _xbCollectionView.dataSource = self
+        _xbCollectionView.isPagingEnabled = true
+        _xbCollectionView.showsHorizontalScrollIndicator = false
         // 注册item:
         _xbCollectionView.register(XBImageBrowserCell.self , forCellWithReuseIdentifier: "cell")
         _xbCollectionView.backgroundColor = UIColor.clear
@@ -66,7 +66,7 @@ class XBImageBrowser: UIViewController {
 
         var tempOffset = xbCollectionView.contentOffset
         tempOffset.x = CGFloat(indexOfItem) * XBImageBorwserConfig.getRightSize().width
-        xbCollectionView.contentOffset=tempOffset;
+        xbCollectionView.contentOffset=tempOffset
     }
 
     
@@ -108,7 +108,7 @@ class XBImageBrowser: UIViewController {
         
         var tempOffset = xbCollectionView.contentOffset
         tempOffset.x = CGFloat(indexOfItem) * XBImageBorwserConfig.getRightSize().width
-        self.xbCollectionView.contentOffset=tempOffset;
+        xbCollectionView.contentOffset=tempOffset
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue:XBImageBorwserConfig.kNotice_deviceOrientationWillChange), object: nil)
     }
@@ -136,9 +136,9 @@ extension XBImageBrowser:UICollectionViewDataSource,UICollectionViewDelegateFlow
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! XBImageBrowserCell
-        cell.str_imagePathOrUrlstr=self.arr_imagePathOrUrlstr[indexPath.item]
-        cell.index=indexPath.item
-        return cell;
+        cell.str_imagePathOrUrlstr = arr_imagePathOrUrlstr[indexPath.item]
+        cell.index = indexPath.item
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

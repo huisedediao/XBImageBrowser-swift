@@ -14,10 +14,10 @@ class XBImageBrowserItem: UIView {
     fileprivate lazy var scrollView:UIScrollView = {
         let _scrollView = UIScrollView()
         _scrollView.delegate = self
-        _scrollView.maximumZoomScale = 5.0;//最大缩放倍数
-        _scrollView.minimumZoomScale = 1.0;//最小缩放倍数
-        _scrollView.showsVerticalScrollIndicator = false;
-        _scrollView.showsHorizontalScrollIndicator = false;
+        _scrollView.maximumZoomScale = 5.0//最大缩放倍数
+        _scrollView.minimumZoomScale = 1.0//最小缩放倍数
+        _scrollView.showsVerticalScrollIndicator = false
+        _scrollView.showsHorizontalScrollIndicator = false
         _scrollView.backgroundColor = UIColor.clear
         return _scrollView
     }()
@@ -60,7 +60,7 @@ class XBImageBrowserItem: UIView {
             if str_imagePathOrUrlstr != nil
             {
                 //避免本地图片太大(不管本地或者网络)，滑动到下一次cell复用，仍然显示上一张图片
-                self.imageView.frame = CGRect.zero
+                imageView.frame = CGRect.zero
                 activityView.startAnimating()
                 
                 XBImageManager.shared.getImageWith(urlStr: str_imagePathOrUrlstr!)
@@ -70,27 +70,27 @@ class XBImageBrowserItem: UIView {
     
     private var image:UIImage? {
         didSet{
-            if self.image != nil {
+            if image != nil {
                 activityView.stopAnimating()
-                self.imageView.image = image;
-                var width = image!.size.width;
-                var height = image!.size.height;
-                let maxHeight = self.scrollView.bounds.size.height;
-                let maxWidth = self.scrollView.bounds.size.width;
+                imageView.image = image
+                var width = image!.size.width
+                var height = image!.size.height
+                let maxHeight = scrollView.bounds.size.height
+                let maxWidth = scrollView.bounds.size.width
                 //如果图片尺寸大于view尺寸，按比例缩放
                 if(width > maxWidth || height > width)
                 {
-                    let ratio = height / width;
-                    let maxRatio = maxHeight / maxWidth;
+                    let ratio = height / width
+                    let maxRatio = maxHeight / maxWidth
                     if(ratio < maxRatio)
                     {
-                        width = maxWidth;
-                        height = width*ratio;
+                        width = maxWidth
+                        height = width*ratio
                     }
                     else
                     {
-                        height = maxHeight;
-                        width = height / ratio;
+                        height = maxHeight
+                        width = height / ratio
                     }
                 }
                 imageView.frame = CGRect(x: (maxWidth - width) / 2, y: (maxHeight - height) / 2, width: width, height: height)
@@ -173,9 +173,9 @@ class XBImageBrowserItem: UIView {
     private func updateSubviewsFrame() -> Void {
 
         frame = CGRect(x: 0, y: 0, width: XBImageBorwserConfig.getRightSize().width, height: XBImageBorwserConfig.getRightSize().height)
-        self.scrollView.frame=self.bounds;
-        self.scrollView.zoomScale=1.0;
-        self.activityView.center=self.center;
+        scrollView.frame = bounds
+        scrollView.zoomScale = 1.0
+        activityView.center = center
     }
     
 
@@ -195,9 +195,9 @@ class XBImageBrowserItem: UIView {
         switch (state){
         
         case .began:
-            break;
+            break
         case .changed:
-            break;
+            break
         case .cancelled,.ended:
             
             //以点击点为中心，放大图片
@@ -205,26 +205,26 @@ class XBImageBrowserItem: UIView {
             let zoomOut = scrollView.zoomScale == scrollView.minimumZoomScale
             let scale = zoomOut ? scrollView.maximumZoomScale : scrollView.minimumZoomScale
             UIView.animate(withDuration: 0.3, animations: {
-                self.scrollView.zoomScale = scale;
+                self.scrollView.zoomScale = scale
                 if(zoomOut)
                 {
                     var x = touchPoint.x * scale - self.scrollView.bounds.size.width * 0.5
                     let maxX = self.scrollView.contentSize.width-self.scrollView.bounds.size.width
                     let minX:CGFloat = 0
-                    x = x > maxX ? maxX : x;
-                    x = x < minX ? minX : x;
+                    x = x > maxX ? maxX : x
+                    x = x < minX ? minX : x
                     
                     var y = touchPoint.y * scale-self.scrollView.bounds.size.height * 0.5
                     let maxY = self.scrollView.contentSize.height-self.scrollView.bounds.size.height
                     let minY:CGFloat = 0
-                    y = y > maxY ? maxY : y;
-                    y = y < minY ? minY : y;
+                    y = y > maxY ? maxY : y
+                    y = y < minY ? minY : y
                     self.scrollView.contentOffset = CGPoint(x: x, y: y)
                 }
             })
-            break;
+            break
             
-        default:break;
+        default:break
         }
     }
 }
@@ -238,11 +238,11 @@ extension XBImageBrowserItem:UIScrollViewDelegate {
     
     //缩放后让图片显示到屏幕中间
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        let originalSize = scrollView.bounds.size;
-        let contentSize = scrollView.contentSize;
-        let offsetX = originalSize.width > contentSize.width ? (originalSize.width - contentSize.width) / 2 : 0;
-        let offsetY = originalSize.height > contentSize.height ? (originalSize.height - contentSize.height) / 2 : 0;
-        self.imageView.center = CGPoint(x: contentSize.width / 2 + offsetX, y: contentSize.height / 2 + offsetY)
+        let originalSize = scrollView.bounds.size
+        let contentSize = scrollView.contentSize
+        let offsetX = originalSize.width > contentSize.width ? (originalSize.width - contentSize.width) / 2 : 0
+        let offsetY = originalSize.height > contentSize.height ? (originalSize.height - contentSize.height) / 2 : 0
+        imageView.center = CGPoint(x: contentSize.width / 2 + offsetX, y: contentSize.height / 2 + offsetY)
     }
     
 }

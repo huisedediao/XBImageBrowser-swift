@@ -59,7 +59,7 @@ class XBImageManager: NSObject {
             var result:UIImage?
             
             //从本地缓存字典中查找是否有改urlStr对应的图片
-            result = self.dicM_tempImage[urlStr];
+            result = self.dicM_tempImage[urlStr]
             if result != nil
             {
                 self.postNotiWith(urlStr: urlStr, image: result)

@@ -40,6 +40,23 @@ class XBImageBrowserItem: UIView {
         return _imageView
     }()
     
+    fileprivate var _loadingView:UIView?
+    fileprivate var loadingView:UIView {
+        if createLoadingViewBlcok != nil && _loadingView == nil
+        {
+            _loadingView = createLoadingViewBlcok!()
+        }
+        if _loadingView == nil
+        {
+            _loadingView = self.activityView
+        }
+        if _loadingView == self.activityView
+        {
+            self.activityView.startAnimating()
+        }
+        return _loadingView!
+    }
+    
     fileprivate lazy var activityView:UIActivityIndicatorView = {
         let _activityView = UIActivityIndicatorView()
         _activityView.center=self.center
@@ -61,17 +78,24 @@ class XBImageBrowserItem: UIView {
             {
                 //避免本地图片太大(不管本地或者网络)，滑动到下一次cell复用，仍然显示上一张图片
                 imageView.frame = CGRect.zero
-                activityView.startAnimating()
+                loadingView.isHidden = false
                 
                 XBImageManager.shared.getImageWith(urlStr: str_imagePathOrUrlstr!)
             }
         }
     }
     
+    /** 创建等待view的block，如果没有设置则默认为菊花 */
+    var createLoadingViewBlcok:CreateLoadingViewBlockType?{
+        didSet{
+            addSubview(self.loadingView)
+        }
+    }
+    
     private var image:UIImage? {
         didSet{
             if image != nil {
-                activityView.stopAnimating()
+                loadingView.isHidden = true
                 imageView.image = image
                 var width = image!.size.width
                 var height = image!.size.height
@@ -116,7 +140,6 @@ class XBImageBrowserItem: UIView {
     private func configSubViews() -> Void {
         addSubview(scrollView)
         scrollView.addSubview(imageView)
-        addSubview(activityView)
     }
     
     
@@ -175,7 +198,7 @@ class XBImageBrowserItem: UIView {
         frame = CGRect(x: 0, y: 0, width: XBImageBorwserConfig.getRightSize().width, height: XBImageBorwserConfig.getRightSize().height)
         scrollView.frame = bounds
         scrollView.zoomScale = 1.0
-        activityView.center = center
+        loadingView.center = center
     }
     
 

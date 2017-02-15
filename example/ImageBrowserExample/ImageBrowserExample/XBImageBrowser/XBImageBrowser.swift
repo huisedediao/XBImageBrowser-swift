@@ -41,7 +41,8 @@ class XBImageBrowser: UIViewController {
     /** 当前展示的是第几张 */
     var indexOfItem:Int = 0
 
-    
+    /** 创建等待view的block，如果没有设置则默认为菊花 */
+    var createLoadingViewBlcok:CreateLoadingViewBlockType?
     
     
     // MARK: - 生命周期
@@ -136,8 +137,10 @@ extension XBImageBrowser:UICollectionViewDataSource,UICollectionViewDelegateFlow
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! XBImageBrowserCell
+        cell.createLoadingViewBlcok = createLoadingViewBlcok
         cell.str_imagePathOrUrlstr = arr_imagePathOrUrlstr[indexPath.item]
         cell.index = indexPath.item
+        print(cell)
         return cell
     }
 

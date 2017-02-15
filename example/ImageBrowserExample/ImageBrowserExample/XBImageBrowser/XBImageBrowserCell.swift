@@ -27,6 +27,13 @@ class XBImageBrowserCell: UICollectionViewCell {
         return item
     }()
     
+    /** 创建等待view的block，如果没有设置则默认为菊花 */
+    var createLoadingViewBlcok:CreateLoadingViewBlockType?{
+        didSet{
+            item.createLoadingViewBlcok = createLoadingViewBlcok
+        }
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

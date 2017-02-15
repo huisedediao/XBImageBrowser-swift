@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 
+typealias CreateLoadingViewBlockType = () ->UIView
+
 class XBImageBorwserConfig: NSObject {
-    
+
     static let ScreenWidth = UIScreen.main.bounds.size.width
     static let ScreenHeight = UIScreen.main.bounds.size.height
     
